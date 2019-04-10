@@ -8,19 +8,21 @@ export interface ActionWithPayload<Payload> extends Action {
 
 export type ActionCreator = () => Action
 
+export type CreateAction = (type: string) => ActionCreator
+
+export const createAction: CreateAction = type => () => ({
+  type,
+})
+
 export type ActionCreatorWithPayload<Payload> = (
   payload: Payload,
 ) => ActionWithPayload<Payload>
 
-export const createAction = (type: string) =>
-  ({
-    type,
-  } as Action)
+export type CreateActionWithPayload = <Payload>(
+  type: string,
+) => (payload: Payload) => ActionWithPayload<Payload>
 
-export const createActionWithPayload = <Payload>(type: string) => (
-  payload: Payload,
-) =>
-  ({
-    type,
-    payload,
-  } as ActionWithPayload<Payload>)
+export const createActionWithPayload: CreateActionWithPayload = type => payload => ({
+  type,
+  payload,
+})

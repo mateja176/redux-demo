@@ -1,15 +1,12 @@
-import { Action } from "redux"
+import { NameAction, NameActionTypes } from "../actions/name"
 
 export type State = string
 
 export const initialState: State = "Jane"
 
-export default (
-  state = initialState,
-  { type, payload }: Action & { payload: string },
-) => {
+export default (state = initialState, { type, payload }: NameAction) => {
   switch (type) {
-    case "[Name] Set":
+    case NameActionTypes.Set:
       return payload
     default:
       return state
