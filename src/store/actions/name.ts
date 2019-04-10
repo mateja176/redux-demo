@@ -1,4 +1,4 @@
-import { ActionCreatorWithPayload } from "."
+import { ActionCreatorWithPayload, createActionWithPayload } from "."
 import { State } from "../reducer/name"
 
 export const NameActionTypes = {
@@ -7,7 +7,4 @@ export const NameActionTypes = {
 
 export type SetName = ActionCreatorWithPayload<State>
 
-export const setName: SetName = name => ({
-  type: NameActionTypes.Set,
-  payload: name,
-})
+export const setName = createActionWithPayload<State>(NameActionTypes.Set)
