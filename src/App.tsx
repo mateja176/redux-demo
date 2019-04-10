@@ -1,28 +1,41 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { SFC, useState } from "react"
+import { connect } from "react-redux"
+import "./App.css"
+import { setName, SetName } from "./store/actions/name"
+import { selectName, State } from "./store/reducer"
+import { State as Name } from "./store/reducer/name"
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.tsx</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+export interface AppProps {
+  name: Name
+  setName: SetName
 }
 
-export default App;
+const App: SFC<AppProps> = ({ name, setName }) => {
+  const [value, setValue] = useState("")
+
+  return (
+    <form
+      className="App"
+      onSubmit={e => {
+        e.preventDefault()
+
+        setName(value)
+      }}
+    >
+      <input value={name} readOnly />
+      <hr />
+      <input
+        value={value}
+        onChange={({ target: { value: newValue } }) => setValue(newValue)}
+      />
+      <input type="submit" />
+    </form>
+  )
+}
+
+const mapStateToProps = (state: State) => ({ name: selectName(state) })
+
+export default connect(
+  mapStateToProps,
+  { setName },
+)(App)
