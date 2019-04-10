@@ -1,13 +1,13 @@
 import React, { SFC, useState } from "react"
 import { connect } from "react-redux"
 import "./App.css"
-import { setName, SetName } from "./store/actions/name"
+import { setName } from "./store/actions/name"
 import { selectName, State } from "./store/reducer"
 import { State as Name } from "./store/reducer/name"
 
 export interface AppProps {
   name: Name
-  setName: SetName
+  setName: (name: Name) => void
 }
 
 const App: SFC<AppProps> = ({ name, setName }) => {
