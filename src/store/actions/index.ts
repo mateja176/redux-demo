@@ -1,11 +1,13 @@
 import { Action as ReduxAction } from "redux"
 
-export class Action implements ReduxAction {
-  readonly type: string
+export interface Action extends ReduxAction<string> {}
+
+export interface ActionWithPayload<Payload> extends Action {
+  payload: Payload
 }
 
-export class ActionWithPayload<Payload> extends Action {
-  constructor(public payload: Payload) {
-    super()
-  }
-}
+export type ActionCreator = () => Action
+
+export type ActionCreatorWithPayload<Payload> = (
+  payload: Payload,
+) => ActionWithPayload<Payload>
