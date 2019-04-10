@@ -1,20 +1,18 @@
-import { applyMiddleware, createStore, Store } from "redux"
-import { composeWithDevTools } from "redux-devtools-extension"
 import logger from "redux-logger"
-import reducer, { State } from "./reducer"
+import { configureStore, Store } from "redux-starter-kit"
+import { Environment } from "../models/Environment"
+import reducer from "./reducer"
 
 export const middleware = [logger]
 
-const configureStore = (env: string): Store<State> => {
-  switch (env) {
-    case "production":
-      return createStore(reducer)
-    default:
-      return createStore(
-        reducer,
-        composeWithDevTools(applyMiddleware(...middleware)),
-      )
-  }
-}
+export default {
+  production: () => configureStore({ reducer }),
+  development: () => {
+    const store = configureStore({ reducer, middleware })
+    ;(module as any).hot.accept("./reducer", () => {
+      store.replaceReducer(reducer)
+    })
 
-export default configureStore
+    return store
+  },
+} as { [key in Environment]: () => Store }

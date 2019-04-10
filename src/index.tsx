@@ -6,7 +6,7 @@ import "./index.css"
 import * as serviceWorker from "./serviceWorker"
 import configureStore from "./store"
 
-const store = configureStore(process.env.NODE_ENV)
+const store = configureStore[process.env.NODE_ENV]()
 
 ReactDOM.render(
   <Provider store={store}>
