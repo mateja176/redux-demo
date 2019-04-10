@@ -1,8 +1,8 @@
 import { Action } from "redux"
 
-export type NameState = string
+export type State = string
 
-export const initialState = "Jane"
+export const initialState: State = "Jane"
 
 export default (
   state = initialState,
