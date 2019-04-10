@@ -8,3 +8,5 @@ export interface State {
 export default combineReducers({
   name,
 })
+
+export const selectName = ({ name }: State) => name
