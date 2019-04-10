@@ -1,4 +1,5 @@
 import React, { SFC, useState } from "react"
+import { hot } from "react-hot-loader"
 import { connect } from "react-redux"
 import "./App.css"
 import { setName } from "./store/actions/name"
@@ -35,7 +36,9 @@ const App: SFC<AppProps> = ({ name, setName }) => {
 
 const mapStateToProps = (state: State) => ({ name: selectName(state) })
 
-export default connect(
-  mapStateToProps,
-  { setName },
-)(App)
+export default hot(module)(
+  connect(
+    mapStateToProps,
+    { setName },
+  )(App),
+)
