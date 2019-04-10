@@ -5,7 +5,9 @@ export const NameActionTypes = {
   Set: "[Name] Set",
 }
 
-export const setName: ActionCreatorWithPayload<State> = name => ({
+export type SetName = ActionCreatorWithPayload<State>
+
+export const setName: SetName = name => ({
   type: NameActionTypes.Set,
   payload: name,
 })
