@@ -1,12 +1,12 @@
 import { ActionWithPayload, createActionWithPayload } from "."
-import { State } from "../reducer/name"
+import { Name } from "../reducer/name"
 
 export const NameActionTypes = {
   Set: "[Name] Set",
 }
 
-export const setName = createActionWithPayload<State>(NameActionTypes.Set)
+export const setName = createActionWithPayload<Name>(NameActionTypes.Set)
 
-export type SetNameAction = ActionWithPayload<State>
+export type SetNameAction = ActionWithPayload<Name>
 
 export type NameAction = SetNameAction

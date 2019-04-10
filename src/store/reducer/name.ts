@@ -1,14 +1,14 @@
 import { NameAction, NameActionTypes } from "../actions/name"
 
-export type State = string
+export type Name = string
 
-export const initialState: State = "Jane"
+export const initialName: Name = "Jane"
 
-export default (state = initialState, { type, payload }: NameAction) => {
+export default (name = initialName, { type, payload }: NameAction) => {
   switch (type) {
     case NameActionTypes.Set:
       return payload
     default:
-      return state
+      return name
   }
 }

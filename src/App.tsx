@@ -3,7 +3,7 @@ import { connect } from "react-redux"
 import "./App.css"
 import { setName } from "./store/actions/name"
 import { selectName, State } from "./store/reducer"
-import { State as Name } from "./store/reducer/name"
+import { Name } from "./store/reducer/name"
 
 export interface AppProps {
   name: Name
